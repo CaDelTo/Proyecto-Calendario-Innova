@@ -4,7 +4,6 @@
   <title>Calendario Innova</title>
   <link rel="icon" href="src\iconoInnova.jpg" type="image/jpeg"> 
   <style>
-    /* Estilos CSS para la página */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -33,27 +32,27 @@
     table {
       border-collapse: collapse;
       width: 100%;
-      border: 4px solid #444; /* Borde externo */
+      border: 4px solid #444; 
     }
     th, td {
       padding: 8px;
       text-align: center;
-      background-color: #222; /* Fondo de las casillas */
+      background-color: #222; 
     }
     th {
-      background-color: #444; /* Fondo de los encabezados */
+      background-color: #444; 
     }
     td:hover {
       cursor: pointer;
-      background-color: #555; /* Fondo al pasar el cursor */
+      background-color: #555; 
     }
     .event-day {
-      background-color: #cb336a; /* Fondo para los días con eventos */
-      border-radius: 100px; /* Bordes redondos */
+      background-color: #cb336a; 
+      border-radius: 100px; 
     }
     .current-day {
-      background-color:  #3198c6 ; /* Fondo para el día actual */
-      border-radius: 100px; /* Bordes redondos */
+      background-color:  #3198c6 ; 
+      border-radius: 100px; 
     }
     .event-description {
       margin-top: 10px;
@@ -75,21 +74,18 @@
   </div>
   <div id="container">
     <table id="calendar">
-      <!-- El calendario será generado dinámicamente mediante JavaScript -->
     </table>
     <div id="eventDescription" class="event-description">
-      <!-- Aquí se mostrará la descripción del evento al hacer clic en una fecha -->
     </div>
   </div>
 
   <script>
-    // Código JavaScript para generar el calendario y manejar eventos
     const eventList = [
       { date: "2023-08-01", description: "Evento Aguacate", image: "src/images.jpeg" },
       { date: "2023-08-15", description: "Evento No Se", image: "src/29366.jpg" }
-    ]; // Una lista de objetos para almacenar eventos, cada objeto contiene la fecha, la descripción y la URL de la imagen del evento.
+    ]; 
 
-    // Función para generar el calendario
+    
     function generateCalendar() {
       const calendar = document.getElementById("calendar");
       const currentDate = new Date();
@@ -119,31 +115,27 @@
 
       calendar.innerHTML = tableContent;
 
-      // Aplicar estilos a los días con eventos
+      
       eventList.forEach(event => {
         const cell = document.querySelector(`#calendar td[data-date="${event.date}"]`);
         if (cell) {
           cell.classList.add("event-day");
         }
       });
-
-      // Obtener la fecha actual
+      
       const currentDay = currentDate.getDate();
 
-      // Aplicar estilo al día actual
       const currentCell = document.querySelector(`#calendar td[data-date="${currentYear}-${(currentMonth + 1).toString().padStart(2, "0")}-${currentDay.toString().padStart(2, "0")}"]`);
       if (currentCell) {
         currentCell.classList.add("current-day");
       }
 
-      // Agregar eventos a las celdas del calendario
       const calendarCells = document.querySelectorAll("#calendar td.event");
       calendarCells.forEach(cell => {
         cell.addEventListener("click", showEventDescription);
       });
     }
 
-    // Función para mostrar la descripción del evento al hacer clic en una fecha
     function showEventDescription(event) {
       const date = event.target.getAttribute("data-date");
       const selectedEvent = eventList.find(item => item.date === date);
@@ -173,10 +165,8 @@
       });
     }
 
-    // Llamada inicial para generar el calendario
     generateCalendar();
 
-    // Llamada para ajustar el tamaño de las celdas una vez que el calendario se ha generado
     window.addEventListener("load", resizeCells);
     window.addEventListener("resize", resizeCells);
     const currentDate = new Date();
